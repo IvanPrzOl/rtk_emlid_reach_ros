@@ -10,7 +10,7 @@ class rtk_node(object):
     def __init__(self):
         self._rtk_pub = rospy.Publisher('rtk',rtklibLLH,queue_size=20)
         rospy.init_node('rtk_node')
-        host = rospy.get_param("~host","172.16.55.124")
+        host = rospy.get_param("~host","192.168.42.1")
         port = rospy.get_param("~port",9001)
 
         self._tcpGate = TcpSerialDataGateway(host,port,self._inDataHandler)
@@ -34,7 +34,6 @@ class rtk_node(object):
                 rtkmsg.fixQuality = int(splitData[5])
                 rtkmsg.satellites = int(splitData[6])
                 rtkmsg.standarDevs = [float(x) for x in splitData[7:13] ]
-                rospy.loginfo("cp")
                 rtkmsg.age = float(splitData[13])
                 rtkmsg.ratio = float(splitData[14])
                 
