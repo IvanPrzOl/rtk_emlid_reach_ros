@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="rtk_emlid_reach" type="rtk_parse_node.py" name"rtk_parse_node" output="screen">
+    <param name="host" value="192.168.42.1"/>
+</node>
+</launch>
