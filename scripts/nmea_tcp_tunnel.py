@@ -3,7 +3,7 @@
 import rospy
 import re
 import sys
-from nmea_nmea_msgs.msg import Sentence
+from nmea_msgs.msg import Sentence
 from TcpGate import TcpSerialDataGateway
 
 class nmea_tunnel(object):
