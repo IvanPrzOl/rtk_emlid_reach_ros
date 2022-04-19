@@ -1,0 +1,11 @@
+<launch>
+
+  <node pkg="rtk_emlid_reach" type="nmea_tcp_tunnel.py" name="nmea_tcp_tunnel" output="screen">
+    <param name="host" value="10.42.0.30" />
+  </node>
+
+<node pkg="nmea_navsat_driver" type="nmea_topic_driver" name="nmea_topic_driver" output="screen">
+
+</node> 
+  
+</launch>
