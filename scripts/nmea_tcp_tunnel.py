@@ -8,7 +8,7 @@ from TcpGate import TcpSerialDataGateway
 
 class nmea_tunnel(object):
     def __init__(self):
-        self._tunnel_pub = rospy.Publisher('rtk',rtklibLLH,queue_size=20)
+        self._tunnel_pub = rospy.Publisher('nmea_sentence',Sentence,queue_size=20)
         rospy.init_node('nmea_tcp_tunnel')
         host = rospy.get_param("~host","192.168.42.1")
         port = rospy.get_param("~port",9001)
@@ -23,7 +23,7 @@ class nmea_tunnel(object):
         try:
             # to do: contruct and send nmea sentences
             sentence = Sentence()
-            rtkmsg.header.stamp = rospy.Time.now()
+            sentence.header.stamp = rospy.Time.now()
             sentence.sentence = inData
             self._tunnel_pub.publish(sentence)
         except:
