@@ -43,14 +43,12 @@ class TcpSerialDataGateway(object):
         stringIO = StringIO()
         while self._keepRunning:
             data = self._sock.recv(1)
-            if data == '\r' or data == '':
-                pass
-            if data == '\n' and self._bytesReceived > 0:
+            if (data == '\n' or data == '\r') and self._bytesReceived > 0:
                 self._dataHandler(stringIO.getvalue())
                 stringIO.close()
                 stringIO = StringIO()
                 self._bytesReceived = 0
-            if data == '\n' and self._bytesReceived == 0:
+            if (data == '\n' or data =='\r') and self._bytesReceived == 0:
                 stringIO.close()
                 stringIO = StringIO()
             else:
@@ -58,7 +56,7 @@ class TcpSerialDataGateway(object):
                 self._bytesReceived += 1
 
 if __name__ == '__main__':
-    dataReceiver = TcpSerialDataGateway(ip4='172.16.55.124',port=9001)
+    dataReceiver = TcpSerialDataGateway(ip4='172.16.49.3',port=9001)
     dataReceiver.start()
     raw_input("Hit <Enter to end")
     dataReceiver.stop()
